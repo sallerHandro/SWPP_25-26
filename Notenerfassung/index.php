@@ -16,6 +16,12 @@
 
     print_r($_POST);
 
+    $name = "";
+    $email = "";
+    $examDate = "";
+    $grade = "";
+    $subject = "";
+
     if (isset($_POST["submit"])) {
 
         $name = isset($_POST["name"]) ? $_POST["name"] : "";
@@ -41,6 +47,7 @@
                        class="form-control"
                        maxlength="20"
                        required="required"
+                       value="<?= htmlspecialchars($name) ?>">
                 />
             </div>
 
@@ -49,6 +56,7 @@
                 <input type="email"
                        name="email"
                        class="form-control"
+                       value="<?= htmlspecialchars($email) ?>">
                 />
             </div>
 
@@ -61,9 +69,10 @@
                 <select name="subject"
                         class="form-select"
                         required="required">
-                    <option>Mathematik</option>
-                    <option>Deutsch</option>
-                    <option>Englisch</option>
+                    <option value="" hidden>- Fach Auswählen -</option>
+                    <option value="m">Mathematik</option>
+                    <option value="d">Deutsch</option>
+                    <option value="e">Englisch</option>
                 </select>
 
 
@@ -77,6 +86,7 @@
                        min="1"
                        max="5"
                        required="required"
+                       value="<?= htmlspecialchars($grade) ?>">
                 />
 
             </div>
@@ -88,6 +98,7 @@
                        class="form-control"
                        required="required"
                        onchange="validateExamDate(this)"
+                       value="<?= htmlspecialchars($examDate) ?>">
                 />
 
             </div>
