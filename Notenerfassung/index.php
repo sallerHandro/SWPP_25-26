@@ -18,6 +18,8 @@
                 <input type="text"
                        name="name"
                        class="form-control"
+                       maxlength="20"
+                       required="required"
                 />
             </div>
 
@@ -36,11 +38,13 @@
             <div class="col-sm-4 form-group">
                 <label for="subject">Fach*</label>
                 <select name="subject"
-                        class="form-select">
+                        class="form-select"
+                        required="required">
                     <option>Mathematik</option>
                     <option>Deutsch</option>
                     <option>Englisch</option>
                 </select>
+
 
             </div>
 
@@ -49,6 +53,9 @@
                 <input type="number"
                        name="grade"
                        class="form-control"
+                       min="1"
+                       max="5"
+                       required="required"
                 />
 
             </div>
@@ -58,6 +65,7 @@
                 <input type="date"
                        name="examDate"
                        class="form-control"
+                       required="required"
                 />
 
             </div>
@@ -69,7 +77,14 @@
             <div class="col-sm-3 mb-3">
                 <input type="submit"
                        name="submit"
-                       class="btn-primary btn-block"
+                       class="btn btn-primary btn-block"
+                       value="Validieren"
+                />
+
+            </div>
+
+            <div class="col-sm-3">
+                <a href="index.php" class="btn btn-secondary btn-block">Löschen</a>
 
             </div>
 
