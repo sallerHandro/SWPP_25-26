@@ -14,7 +14,7 @@
 
     require "lib/func.inc.php";
 
-    print_r($_POST);
+    //print_r($_POST);
 
     $name = "";
     $email = "";
@@ -30,6 +30,16 @@
         $grade = isset($_POST["grade"]) ? $_POST["grade"] : "";
         $subject = isset($_POST["subject"]) ? $_POST["subject"] : "";
 
+        if (validate($name, $email, $examDate, $grade, $subject)) {
+            echo "<p class='alert alert-success'>Die eingegebnen Daten sind in Ordnung</p>";
+        } else{
+            echo "<div class='alert alert-danger'><p>Die eingegebnen Daten sind fehlerhaft</p><ul>";
+
+            foreach ($errors as $key => $value) {
+                echo "<li>" .$value. "</li>";
+            }
+            echo "</ul></div>";
+        }
 
     }
 
@@ -44,10 +54,10 @@
                 <label for="name">Name*</label>
                 <input type="text"
                        name="name"
-                       class="form-control"
+                       class="form-control <?= isset($errors["name"]) ? 'is-invalid' : '' ?>"
                        maxlength="20"
                        required="required"
-                       value="<?= htmlspecialchars($name) ?>">
+                       value="<?= htmlspecialchars($name) ?>"
                 />
             </div>
 
@@ -56,7 +66,7 @@
                 <input type="email"
                        name="email"
                        class="form-control"
-                       value="<?= htmlspecialchars($email) ?>">
+                       value="<?= htmlspecialchars($email) ?>"
                 />
             </div>
 
@@ -70,9 +80,9 @@
                         class="form-select"
                         required="required">
                     <option value="" hidden>- Fach Auswählen -</option>
-                    <option value="m">Mathematik</option>
-                    <option value="d">Deutsch</option>
-                    <option value="e">Englisch</option>
+                    <option value="m" <?php if ($subject == "m") echo "selected='selected'"; ?>>Mathematik</option>
+                    <option value="d" <?php if ($subject == "d") echo "selected='selected'"; ?>>Deutsch</option>
+                    <option value="e" <?php if ($subject == "e") echo "selected='selected'"; ?>>Englisch</option>
                 </select>
 
 
@@ -86,7 +96,7 @@
                        min="1"
                        max="5"
                        required="required"
-                       value="<?= htmlspecialchars($grade) ?>">
+                       value="<?= htmlspecialchars($grade) ?>"
                 />
 
             </div>
@@ -98,7 +108,7 @@
                        class="form-control"
                        required="required"
                        onchange="validateExamDate(this)"
-                       value="<?= htmlspecialchars($examDate) ?>">
+                       value="<?= htmlspecialchars($examDate) ?>"
                 />
 
             </div>
