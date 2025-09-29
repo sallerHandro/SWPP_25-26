@@ -66,6 +66,7 @@
                        name="examDate"
                        class="form-control"
                        required="required"
+                       onchange="validateExamDate(this)"
                 />
 
             </div>
@@ -93,6 +94,7 @@
 
     </form>
 </div>
+<script src="index.js"></script>
 </body>
 </html>
 
