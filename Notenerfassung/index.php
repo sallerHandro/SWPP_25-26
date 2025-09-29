@@ -3,11 +3,32 @@
 <head>
     <meta charset="utf-8">
     <title>Notenerfassung</title>
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
+
     <h1 class="mt-5 mb-3">Notenerfassung</h1>
+
+    <?php
+
+    require "lib/func.inc.php";
+
+    print_r($_POST);
+
+    if (isset($_POST["submit"])) {
+
+        $name = isset($_POST["name"]) ? $_POST["name"] : "";
+        $email = isset($_POST["email"]) ? $_POST["email"] : "";
+        $examDate = isset($_POST["examDate"]) ? $_POST["examDate"] : "";
+        $grade = isset($_POST["grade"]) ? $_POST["grade"] : "";
+        $subject = isset($_POST["subject"]) ? $_POST["subject"] : "";
+
+
+    }
+
+
+    ?>
 
     <form id="form_grade" method="post" action="index.php">
 
@@ -94,7 +115,7 @@
 
     </form>
 </div>
-<script src="index.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
 
