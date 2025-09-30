@@ -120,7 +120,7 @@
             <div class="col-sm-3 mb-3">
                 <input type="submit"
                        name="submit"
-                       class="btn btn-primary btn-block"
+                       class="btn btn btn-primary btn-block"
                        value="Validieren"
                 />
 
