@@ -65,7 +65,7 @@
                 <label for="email">E-Mail</label>
                 <input type="email"
                        name="email"
-                       class="form-control"
+                       class="form-control" <?= isset($errors["email"]) ? 'is-invalid' : '' ?>
                        value="<?= htmlspecialchars($email) ?>"
                 />
             </div>
@@ -77,7 +77,7 @@
             <div class="col-sm-4 form-group">
                 <label for="subject">Fach*</label>
                 <select name="subject"
-                        class="form-select"
+                        class="form-select <?= isset($errors["subject"]) ? 'is-invalid' : '' ?>"
                         required="required">
                     <option value="" hidden>- Fach Auswählen -</option>
                     <option value="m" <?php if ($subject == "m") echo "selected='selected'"; ?>>Mathematik</option>
@@ -92,7 +92,7 @@
                 <label for="grade">Note*</label>
                 <input type="number"
                        name="grade"
-                       class="form-control"
+                       class="form-control <?= isset($errors["grade"]) ? 'is-invalid' : '' ?>"
                        min="1"
                        max="5"
                        required="required"
@@ -105,7 +105,7 @@
                 <label for="examDate">Prüfungsdatum*</label>
                 <input type="date"
                        name="examDate"
-                       class="form-control"
+                       class="form-control <?= isset($errors["examDate"]) ? 'is-invalid' : '' ?>"
                        required="required"
                        onchange="validateExamDate(this)"
                        value="<?= htmlspecialchars($examDate) ?>"
