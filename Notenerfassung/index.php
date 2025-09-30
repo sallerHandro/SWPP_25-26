@@ -65,7 +65,7 @@
                 <label for="email">E-Mail</label>
                 <input type="email"
                        name="email"
-                       class="form-control" <?= isset($errors["email"]) ? 'is-invalid' : '' ?>
+                       class="form-control <?= isset($errors["email"]) ? 'is-invalid' : '' ?>"
                        value="<?= htmlspecialchars($email) ?>"
                 />
             </div>
