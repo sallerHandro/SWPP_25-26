@@ -42,13 +42,10 @@ function validateSubject($subject){
 
     global $errors;
 
-    if (strlen($name) == 0){
-        $errors['name'] = "Name darf nicht leer sein!";
+    if ($subject != 'm' || $subject != 'd' || $subject != 'e') {
+        $errors['subject'] = "Fach ungültig";
         return false;
-    } elseif (strlen($name) > 20) {
-        $errors['name'] = "Name darf maximal 20 Zeichen haben!";
-        return false;
-    } else {
+    } else{
         return true;
     }
 }
