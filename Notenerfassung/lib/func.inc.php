@@ -27,14 +27,18 @@ function validateExamDate($examDate){
 
     global $errors;
 
-    if (strlen($name) == 0){
-        $errors['name'] = "Name darf nicht leer sein!";
-        return false;
-    } elseif (strlen($name) > 20) {
-        $errors['name'] = "Name darf maximal 20 Zeichen haben!";
-        return false;
-    } else {
-        return true;
+    try {
+        if ($examDate == ""){
+            $errors['examDate'] = "Prüfungsdatum darf nicht leer sein!";
+            return false;
+        } elseif (new DateTime($examDate) > new DateTime()){
+            $errors['examDate'] = "Prüfungsdatum darf nicht in der Zukunft liegen!";
+            return false;
+        } else {
+            return true;
+        }
+    } catch (Exception $e){
+        $errors['examDate'] = "Prüfungsdatum ungültig";
     }
 }
 
