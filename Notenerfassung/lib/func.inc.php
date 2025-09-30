@@ -57,13 +57,10 @@ function validateGrade($grade){
 
     global $errors;
 
-    if ($grade < 1 || $grade > 5) {
-        $errors['name'] = "Name darf nicht leer sein!";
+    if (!is_numeric($grade) || $grade < 1 || $grade > 5) {
+        $errors['grade'] = "Note ungültig";
         return false;
-    } elseif (strlen($name) > 20) {
-        $errors['name'] = "Name darf maximal 20 Zeichen haben!";
-        return false;
-    } else {
+    } else{
         return true;
     }
 }
