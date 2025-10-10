@@ -14,7 +14,12 @@
     <div class="row">
 
         <div class="col-12">
-
+            <label for="tv">Tv-Budget (in 1000 Dollar)</label>
+            <input type="number"
+                   step="0.01"
+                   min="1"
+                   name="tv"
+                    >
         </div>
 
     </div>
