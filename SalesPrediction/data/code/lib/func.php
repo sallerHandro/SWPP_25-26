@@ -5,19 +5,25 @@ $errors = [];
 
 function validateValues($tv, $radio, $newspaper){
     global $errors;
+    $errors = []; // evtl. alte Fehler leeren
 
-    if ($tv === "" || $radio === "" || $newspaper === ""){
+    // Leerprüfung
+    if ($tv === "" || $radio === "" || $newspaper === "") {
         $errors[] = "Jedes Feld muss ausgefüllt sein!";
-        return false;
-    } elseif (!is_numeric($tv) || !is_numeric($radio) || !is_numeric($newspaper)){
-        $errors[] = "Die Werte müssen Zahlen sein";
-        return false;
-    } elseif ($tv < 0 || $radio < 0 || $newspaper < 0){
-        $errors[] = "Die Werte dürfen nicht im Minusbreich liegen!";
-        return false;
-    } else {
-        return true;
     }
+
+    // Numerisch-Prüfung
+    if (!is_numeric($tv) || !is_numeric($radio) || !is_numeric($newspaper)) {
+        $errors[] = "Alle Werte müssen numerisch sein!";
+    }
+
+    // Negativ-Prüfung
+    if ($tv < 0 || $radio < 0 || $newspaper < 0) {
+        $errors[] = "Die Werte dürfen nicht im Minusbereich liegen!";
+    }
+
+    // Rückgabe abhängig von vorhandenen Fehlern
+    return empty($errors);
 }
 
 ?>
