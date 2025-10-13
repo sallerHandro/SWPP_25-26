@@ -39,7 +39,7 @@
     ?>
 
 
-    <form method="POST" action="index.php">
+    <form method="post" action="index.php">
 
         <div class="row">
 
@@ -48,6 +48,7 @@
                 <input type="number"
                        step="0.01"
                        min="0"
+                       required="required"
                        name="tv"
                        class="form-control"
                 >
@@ -62,6 +63,7 @@
                 <input type="number"
                        step="0.01"
                        min="0"
+                       required="required"
                        name="radio"
                        class="form-control"
                 >
@@ -76,6 +78,7 @@
                 <input type="number"
                        step="0.01"
                        min="0"
+                       required="required"
                        name="newspaper"
                        class="form-control"
                 >
@@ -86,7 +89,10 @@
         <div class="row">
 
             <div class="col-sm-12 mb-3">
-                <button type="submit" class="btn btn-primary w-100">Vorhersage der Ümsätze</button>
+                <input type="submit"
+                       name="submit"
+                       value="Vorhersage der Umsätze"
+                       class="btn btn-primary w-100">
             </div>
 
         </div>
