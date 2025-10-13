@@ -10,15 +10,44 @@
 
     <h1 class="mt-5 mb-3">Sales Prediction</h1>
 
+    <?php
+
+    require "lib/func.php";
+
+    $tv = "";
+    $radio = "";
+    $newspaper = "";
+
+    if (isset($_POST["submit"])) {
+        $tv = isset($_POST["tv"]) ? $_POST["tv"] : "";
+        $radio = isset($_POST["radio"]) ? $_POST["radio"] : "";
+        $newspaper = isset($_POST["newspaper"]) ? $_POST["newspaper"] : "";
+
+
+        if (validateValues($tv, $radio, $newspaper)) {
+            echo "<p class='alert alert-success'>Die eingegebenen Daten sind in Ordnung</p>";
+        } else {
+            echo "<div class='alert alert-danger'><p>Die eingegebenen Daten sind fehlerhaft</p><ul>";
+
+            foreach ($errors as $error) {
+                echo "<li>" . $error . "</li>";
+            }
+            echo "</ul></div>";
+        }
+    }
+
+    ?>
+
+
     <form method="POST" action="index.php">
 
         <div class="row">
 
-            <div class="col-12">
+            <div class="col-sm-12 mb-3">
                 <label for="tv">Tv-Budget (in 1000 Dollar)</label>
                 <input type="number"
                        step="0.01"
-                       min="1"
+                       min="0"
                        name="tv"
                        class="form-control"
                 >
@@ -28,11 +57,11 @@
 
         <div class="row">
 
-            <div class="col-12">
+            <div class="col-sm-12 mb-3">
                 <label for="radio">Radio-Budget (in 1000 Dollar)</label>
                 <input type="number"
                        step="0.01"
-                       min="1"
+                       min="0"
                        name="radio"
                        class="form-control"
                 >
@@ -42,11 +71,11 @@
 
         <div class="row">
 
-            <div class="col-12">
+            <div class="col-sm-12 mb-3">
                 <label for="newspaper">Zeitung-Budget (in 1000 Dollar)</label>
                 <input type="number"
                        step="0.01"
-                       min="1"
+                       min="0"
                        name="newspaper"
                        class="form-control"
                 >
@@ -56,7 +85,7 @@
 
         <div class="row">
 
-            <div class="col-12">
+            <div class="col-sm-12 mb-3">
                 <button type="submit" class="btn btn-primary w-100">Vorhersage der Ümsätze</button>
             </div>
 
