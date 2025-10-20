@@ -7,7 +7,7 @@ function getAllUsers(){
 
     foreach($data as $row){
         $ergebnis [] = [
-            ["name"] => $row["firstname"] . " " . $row["lastname"],
+            ['name'] => $row["firstname"] . " " . $row["lastname"],
             ["email"] => $row["email"],
             ["telefonnummer"] => $row["phone"]
         ];

@@ -5,63 +5,72 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
+<div class="container">
 
-        <h1 class="mt-5 mb-3">Benutzerdaten</h1>
+    <h1 class="mt-5 mb-3">Benutzerdaten</h1>
 
-        <form method="post">
+    <form method="post">
 
-            <div class="row">
+        <div class="row">
 
-                <div class="col-1">
-                    <label for="suche" class="col-form-label">Suche: </label>
-                </div>
-
-                <div class="col-4">
-                    <input type="text"
-                           class="form-control"
-                           id="suche"
-                           name="suche">
-                </div>
-
-                <div class="col-1">
-                    <input type="submit"
-                           class="btn btn-primary"
-                           value="Suchen">
-                </div>
-
-                <div class="col-1">
-                    <a href="index.php" class="btn btn-secondary btn-block">Leeren</a>
-                </div>
-
+            <div class="col-1">
+                <label for="suche" class="col-form-label">Suche: </label>
             </div>
+
+            <div class="col-4">
+                <input type="text"
+                       class="form-control"
+                       id="suche"
+                       name="suche">
+            </div>
+
+            <div class="col-1">
+                <input type="submit"
+                       class="btn btn-primary"
+                       value="Suchen">
+            </div>
+
+            <div class="col-1">
+                <a href="index.php" class="btn btn-secondary btn-block">Leeren</a>
+            </div>
+
+        </div>
         <br>
-            <div class="row">
-                <table class="table table-primary">
-                    <tr class="table table-primary">
-                        <th class="table table-primary">Name</th>
-                        <th class="table table-primary">E-Mail</th>
-                        <th class="table table-primary">Telefonnummer</th>
-                    </tr>
-                    <tr class="table table-primary">
-                        <?php
-                            require func.php;
-                            require userdata.php;
+        <div class="row">
 
-                            foreach ($data as $row) {
-                                echo "<tr>";
-                            }
+            <?php
+            include "userData/userdata.php";
+            ?>
 
-                        ?>
+            <div class="col-12">
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>E-Mail</th>
+                        <th>Telefonnummer</th>
                     </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($data as $user): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($user['firstname']) . " " . htmlspecialchars($user['lastname']) ?></td>
+                            <td><?= htmlspecialchars($user['email']) ?></td>
+                            <td><?= htmlspecialchars($user['phone']) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
                 </table>
 
             </div>
 
-        </form>
+
+        </div>
+
+    </form>
 
 
-
-    </div>
+</div>
 </body>
 </html>
