@@ -3,6 +3,7 @@
     <title>Benutzerdaten</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
@@ -37,22 +38,21 @@
             </div>
         <br>
             <div class="row">
-                <table class="table table-primary">
+                <table class="table table-bordered table-striped w-100 text-center">
                     <tr class="table table-primary">
-                        <th class="table table-primary">Name</th>
-                        <th class="table table-primary">E-Mail</th>
-                        <th class="table table-primary">Telefonnummer</th>
+                        <th>Name</th>
+                        <th>E-Mail</th>
+                        <th>Telefonnummer</th>
                     </tr>
-                    <tr class="table table-primary">
-                        <?php
-                            require func.php;
-                            require userdata.php;
-
-                            foreach ($data as $row) {
-                                echo "<tr>";
-                            }
-
-                        ?>
+                    <tr>
+                        <td>ad</td>
+                        <td>ad</td>
+                        <td>ad</td>
+                    </tr>
+                    <tr>
+                        <td>ad</td>
+                        <td>ad</td>
+                        <td>ad</td>
                     </tr>
                 </table>
 
