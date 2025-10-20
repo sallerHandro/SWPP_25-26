@@ -37,7 +37,13 @@
             </div>
 
             <div class="row">
-
+                <table>
+                    <tr>
+                        <td>ad</td>
+                        <td>ad</td>
+                        <td>ad</td>
+                    </tr>
+                </table>
             </div>
 
         </form>
