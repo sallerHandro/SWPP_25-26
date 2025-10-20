@@ -1,14 +1,20 @@
 <?php
 require "userdata.php";
-function getAllData(){
+function getAllUsers(){
     global $data;
 
+    $ergebnis = [];
+
     foreach($data as $row){
-        $name = $row["firstname"] . " " . $row["lastname"];
-        $email = $row["email"];
-        $phone = $row["phone"];
-        echo "<tr>";
+        $ergebnis [] = [
+            ["name"] => $row["firstname"] . " " . $row["lastname"],
+            ["email"] => $row["email"],
+            ["telefonnummer"] => $row["phone"]
+        ];
+        return $ergebnis;
     }
 }
+
+
 
 ?>
