@@ -37,21 +37,22 @@
             </div>
         <br>
             <div class="row">
-                <table class="table-primary">
-                    <tr class="table-primary">
-                        <th class="table-primary">Name</th>
-                        <th class="table-primary">E-Mail</th>
-                        <th class="table-primary">Telefonnummer</th>
+                <table class="table table-primary">
+                    <tr class="table table-primary">
+                        <th class="table table-primary">Name</th>
+                        <th class="table table-primary">E-Mail</th>
+                        <th class="table table-primary">Telefonnummer</th>
                     </tr>
-                    <tr class="table-primary">
-                        <td class="table-primary">ad</td>
-                        <td class="table-primary">ad</td>
-                        <td class="table-primary">ad</td>
-                    </tr>
-                    <tr class="table-primary">
-                        <td class="table-primary">ad</td>
-                        <td class="table-primary">ad</td>
-                        <td class="table-primary">ad</td>
+                    <tr class="table table-primary">
+                        <?php
+                            require func.php;
+                            require userdata.php;
+
+                            foreach ($data as $row) {
+                                echo "<tr>";
+                            }
+
+                        ?>
                     </tr>
                 </table>
 
