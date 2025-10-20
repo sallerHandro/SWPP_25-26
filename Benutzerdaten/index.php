@@ -35,15 +35,26 @@
                 </div>
 
             </div>
-
+        <br>
             <div class="row">
-                <table>
-                    <tr>
-                        <td>ad</td>
-                        <td>ad</td>
-                        <td>ad</td>
+                <table class="table-primary">
+                    <tr class="table-primary">
+                        <th class="table-primary">Name</th>
+                        <th class="table-primary">E-Mail</th>
+                        <th class="table-primary">Telefonnummer</th>
+                    </tr>
+                    <tr class="table-primary">
+                        <td class="table-primary">ad</td>
+                        <td class="table-primary">ad</td>
+                        <td class="table-primary">ad</td>
+                    </tr>
+                    <tr class="table-primary">
+                        <td class="table-primary">ad</td>
+                        <td class="table-primary">ad</td>
+                        <td class="table-primary">ad</td>
                     </tr>
                 </table>
+
             </div>
 
         </form>
