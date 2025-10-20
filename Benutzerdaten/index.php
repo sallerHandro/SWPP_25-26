@@ -44,9 +44,9 @@
 
             <div class="col-12">
 
-                <table class="table table-striped table-hover">
+                <table class="table table-bordered table-striped w-100 text-center">
                     <thead>
-                    <tr>
+                    <tr class="table table-primary">
                         <th>Name</th>
                         <th>E-Mail</th>
                         <th>Telefonnummer</th>
