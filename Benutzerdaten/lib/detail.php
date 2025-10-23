@@ -1,16 +1,3 @@
-<?php
-$id = isset($_GET['id']) ? $_GET['id'] : null;
-
-if ($id === null || !isset($personen[$id])) {
-    echo "<p>Person nicht gefunden.</p>";
-    exit;
-}
-
-$person = $data[$id];
-?>
-
-
-
 <html>
 <head>
     <title>Detailansicht</title>
@@ -19,6 +6,17 @@ $person = $data[$id];
     <link rel="stylesheet" href="../css/style.css" type="text/css" />
 </head>
 <body>
+
+<?php
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+
+if ($id === null || !isset($personen[$id])) {
+    echo "<p>Person nicht gefunden.</p>";
+    exit;
+}
+
+$perso
+?>
 
     <div class="container">
         <h1 class="mt-5 mb-3">Detailansicht</h1>

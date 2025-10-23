@@ -55,7 +55,11 @@
                     <tbody>
                     <?php foreach ($data as $user): ?>
                         <tr>
-                            <td><?= htmlspecialchars($user['firstname']) . " " . htmlspecialchars($user['lastname']) ?></td>
+                            <td>
+                            <a href="lib/detail.php?id=<?= $user['id'] ?>" class="text-decoration-none">
+                                    <?= htmlspecialchars($user['firstname']) . " " . htmlspecialchars($user['lastname']) ?>
+                                </a>
+                            </td>
                             <td><?= htmlspecialchars($user['email']) ?></td>
                             <td><?= htmlspecialchars($user['phone']) ?></td>
                         </tr>
