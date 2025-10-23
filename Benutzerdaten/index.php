@@ -1,3 +1,24 @@
+<?php
+include "lib/userdata.php";
+
+$searchText = isset($_POST['suche']) ? strtolower(trim($_POST['suche'])) : '';
+
+$filteredData = [];
+
+if (!empty($searchText)) {
+    foreach ($data as $user) {
+        $fullName = strtolower($user['firstname'] . ' ' . $user['lastname']);
+        $email = strtolower($user['email']);
+        if (strpos($fullName, $searchText) !== false || 
+            strpos($email, $searchText) !== false) {
+            $filteredData[] = $user;
+        }
+    }
+} else {
+    $filteredData = $data;
+}
+?>
+
 <html>
 <head>
     <title>Benutzerdaten</title>
@@ -18,29 +39,26 @@
             </div>
 
             <div class="col-4">
-                <input type="text"
-                       class="form-control"
-                       id="suche"
-                       name="suche">
+                <input type="text" 
+                       class="form-control" 
+                       id="suche" 
+                       name="suche" 
+                       value="<?= htmlspecialchars($searchText) ?>">
             </div>
 
             <div class="col-1">
-                <input type="submit"
-                       class="btn btn-primary"
+                <input type="submit" 
+                       class="btn btn-primary" 
                        value="Suchen">
             </div>
 
             <div class="col-1">
-                <a href="index.php" class="btn btn-secondary btn-block">Leeren</a>
+                <a href="index.php" class="btn btn-secondary">Leeren</a>
             </div>
 
         </div>
         <br>
         <div class="row">
-
-            <?php
-            include "lib/userdata.php";
-            ?>
 
             <div class="col-12">
 
@@ -53,10 +71,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $user): ?>
+                    <?php foreach ($filteredData as $user): ?>
                         <tr>
                             <td>
-                            <a href="lib/detail.php?id=<?= $user['id'] ?>" class="text-decoration-none">
+                                <a href="lib/detail.php?id=<?= $user['id'] ?>" class="text-decoration-none">
                                     <?= htmlspecialchars($user['firstname']) . " " . htmlspecialchars($user['lastname']) ?>
                                 </a>
                             </td>
