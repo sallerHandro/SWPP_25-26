@@ -26,4 +26,5 @@ function validateValues($tv, $radio, $newspaper){
     return empty($errors);
 }
 
+
 ?>

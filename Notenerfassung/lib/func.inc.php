@@ -5,7 +5,6 @@ $errors = [];
 function validate($name, $email, $examDate, $grade, $subject) {
     return validateName($name) & validateEmail($email) & validateGrade($grade)
         & validateSubject($subject) & validateExamDate($examDate);
-
 }
 
 function validateName($name){

@@ -9,8 +9,8 @@ if (!empty($searchText)) {
     foreach ($data as $user) {
         $fullName = strtolower($user['firstname'] . ' ' . $user['lastname']);
         $email = strtolower($user['email']);
-        if (strpos($fullName, $searchText) !== false || 
-            strpos($email, $searchText) !== false) {
+        if (strpos($fullName, $searchText) !== false ||
+                strpos($email, $searchText) !== false) {
             $filteredData[] = $user;
         }
     }
@@ -48,7 +48,7 @@ if (!empty($searchText)) {
 
             <div class="col-1">
                 <input type="submit" 
-                       class="btn btn-primary" 
+                       class="btn btn-primary"
                        value="Suchen">
             </div>
 
