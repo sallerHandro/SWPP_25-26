@@ -25,16 +25,16 @@ class GradeEntry
 
     public function save(){
         if ($this->validate()){
-            //speichern
-
+            $s = serialize($this);
+            $_SESSION['grades'][] = $s;
             return true;
         }
         return false;
     }
 
-    function validate($name, $email, $examDate, $grade, $subject) {
-        return validateName($name) & validateEmail($email) & validateGrade($grade)
-            & validateSubject($subject) & validateExamDate($examDate);
+    function validate() {
+        return $this->validateName($this->name) & $this->validateEmail($this->email) & $this->validateGrade($this->grade)
+            & $this->validateSubject($this->subject) & $this->validateExamDate($this->examDate);
     }
 
     function validateName($name){
