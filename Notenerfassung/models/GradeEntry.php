@@ -41,12 +41,12 @@ class GradeEntry
         return false;
     }
 
-    function validate() {
+    private function validate() {
         return $this->validateName($this->name) & $this->validateEmail($this->email) & $this->validateGrade($this->grade)
             & $this->validateSubject($this->subject) & $this->validateExamDate($this->examDate);
     }
 
-    function validateName($name){
+    private function validateName($name){
         if (strlen($this->name) == 0){
             $this->errors['name'] = "Name darf nicht leer sein!";
             return false;
@@ -58,7 +58,7 @@ class GradeEntry
         }
     }
 
-    function validateExamDate(){
+    private function validateExamDate(){
         try {
             if ($this->examDate == ""){
                 $this->errors['examDate'] = "Prüfungsdatum darf nicht leer sein!";
@@ -74,7 +74,7 @@ class GradeEntry
         }
     }
 
-    function validateSubject(){
+    private function validateSubject(){
         if ($this->subject != 'm' && $this->subject != 'd' && $this->subject != 'e') {
             $this->errors['subject'] = "Fach ungültig";
             return false;
@@ -83,7 +83,7 @@ class GradeEntry
         }
     }
 
-    function validateGrade(){
+    private function validateGrade(){
         if (!is_numeric($this->grade) || $this->grade < 1 || $this->grade > 5) {
             $this->errors['grade'] = "Note ungültig";
             return false;
@@ -92,7 +92,7 @@ class GradeEntry
         }
     }
 
-    function validateEmail(){
+    private function validateEmail(){
         if ($this->email != "" && !filter_var($this->email, FILTER_VALIDATE_EMAIL)){
             $this->errors['email'] = "Email ungültig";
             return false;
@@ -101,8 +101,22 @@ class GradeEntry
         }
     }
 
+    public function getExamDateFormatted() {
+        return date_format(date_create($this->examDate), 'd.m.Y');
+    }
 
-
+    public function getSubjectFormatted() {
+        switch ($this->subject) {
+            case 'm':
+                return 'Mathematik';
+            case 'd':
+                return 'Deutsch';
+            case 'e':
+                return 'Englisch';
+            default:
+                return null;
+        }
+    }
 
 
     /**
@@ -191,6 +205,10 @@ class GradeEntry
     public function getErrors()
     {
         return $this->errors;
+    }
+
+    public function hasErrors($field){
+        return isset($this->errors[$field]);
     }
 
 
