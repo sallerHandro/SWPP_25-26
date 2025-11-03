@@ -120,7 +120,7 @@ if (isset($_POST["submit"])) {
                 <input type="submit"
                        name="submit"
                        class="btn btn btn-primary btn-block"
-                       value="Validieren"
+                       value="Speichern"
                 />
 
             </div>
