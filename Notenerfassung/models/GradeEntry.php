@@ -41,7 +41,7 @@ class GradeEntry
         return false;
     }
 
-    private function validate() {
+    public function validate() {
         return $this->validateName($this->name) & $this->validateEmail($this->email) & $this->validateGrade($this->grade)
             & $this->validateSubject($this->subject) & $this->validateExamDate($this->examDate);
     }
