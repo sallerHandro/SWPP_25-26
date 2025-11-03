@@ -1,6 +1,5 @@
 <?php
 
-namespace models;
 
 class GradeEntry
 {
@@ -46,7 +45,7 @@ class GradeEntry
             & $this->validateSubject($this->subject) & $this->validateExamDate($this->examDate);
     }
 
-    private function validateName($name){
+    private function validateName(){
         if (strlen($this->name) == 0){
             $this->errors['name'] = "Name darf nicht leer sein!";
             return false;

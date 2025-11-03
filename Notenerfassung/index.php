@@ -1,10 +1,7 @@
 <?php
-
-use models\GradeEntry;
-
 session_start();
 
-require_once "models/GradeEntry.php";
+require_once "models\GradeEntry.php";
 
 $e = new GradeEntry();
 $message = '';
@@ -44,7 +41,9 @@ if (isset($_POST["submit"])) {
 <body>
 <div class="container">
 
-    <h1 class="mt-5 mb-3">Notenerfassung</h1>
+    <h1 class="mt-5 mb-3">Notenerfassung 2.0</h1>
+
+    <?= $message; ?>
 
     <form id="form_grade" method="post" action="index.php">
 
@@ -54,10 +53,10 @@ if (isset($_POST["submit"])) {
                 <label for="name">Name*</label>
                 <input type="text"
                        name="name"
-                       class="form-control <?= isset($errors["name"]) ? 'is-invalid' : '' ?>"
+                       class="form-control <?= $e->hasErrors('name') ? 'is-invalid' : '' ?>"
                        maxlength="20"
                        required="required"
-                       value="<?= htmlspecialchars($name) ?>"
+                       value="<?= htmlspecialchars($e->getName()) ?>"
                 />
             </div>
 
@@ -65,8 +64,8 @@ if (isset($_POST["submit"])) {
                 <label for="email">E-Mail</label>
                 <input type="email"
                        name="email"
-                       class="form-control <?= isset($errors["email"]) ? 'is-invalid' : '' ?>"
-                       value="<?= htmlspecialchars($email) ?>"
+                       class="form-control <?= $e->hasErrors('email') ? 'is-invalid' : '' ?>"
+                       value="<?= htmlspecialchars($e->getEmail()) ?>"
                 />
             </div>
 
@@ -77,12 +76,12 @@ if (isset($_POST["submit"])) {
             <div class="col-sm-4 form-group">
                 <label for="subject">Fach*</label>
                 <select name="subject"
-                        class="form-select <?= isset($errors["subject"]) ? 'is-invalid' : '' ?>"
+                        class="form-select <?= $e->hasErrors('subject') ? 'is-invalid' : '' ?>"
                         required="required">
                     <option value="" hidden>- Fach Auswählen -</option>
-                    <option value="m" <?php if ($subject == "m") echo "selected='selected'"; ?>>Mathematik</option>
-                    <option value="d" <?php if ($subject == "d") echo "selected='selected'"; ?>>Deutsch</option>
-                    <option value="e" <?php if ($subject == "e") echo "selected='selected'"; ?>>Englisch</option>
+                    <option value="m" <?php if ($e->getSubject() == "m") echo "selected='selected'"; ?>>Mathematik</option>
+                    <option value="d" <?php if ($e->getSubject() == "d") echo "selected='selected'"; ?>>Deutsch</option>
+                    <option value="e" <?php if ($e->getSubject() == "e") echo "selected='selected'"; ?>>Englisch</option>
                 </select>
 
 
@@ -92,11 +91,11 @@ if (isset($_POST["submit"])) {
                 <label for="grade">Note*</label>
                 <input type="number"
                        name="grade"
-                       class="form-control <?= isset($errors["grade"]) ? 'is-invalid' : '' ?>"
+                       class="form-control <?= $e->hasErrors('grade') ? 'is-invalid' : '' ?>"
                        min="1"
                        max="5"
                        required="required"
-                       value="<?= htmlspecialchars($grade) ?>"
+                       value="<?= htmlspecialchars($e->getGrade()) ?>"
                 />
 
             </div>
@@ -105,10 +104,10 @@ if (isset($_POST["submit"])) {
                 <label for="examDate">Prüfungsdatum*</label>
                 <input type="date"
                        name="examDate"
-                       class="form-control <?= isset($errors["examDate"]) ? 'is-invalid' : '' ?>"
+                       class="form-control <?= $e->hasErrors('examDate') ? 'is-invalid' : '' ?>"
                        required="required"
                        onchange="validateExamDate(this)"
-                       value="<?= htmlspecialchars($examDate) ?>"
+                       value="<?= htmlspecialchars($e->getExamDate()) ?>"
                 />
 
             </div>
@@ -135,6 +134,54 @@ if (isset($_POST["submit"])) {
 
 
     </form>
+
+    <h2 class="mt-3">Noten</h2>
+
+    <div id="grades">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>E-Mail</th>
+                <th>Prüfungsdatum</th>
+                <th>Fach</th>
+                <th>Note</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+
+            $grades = GradeEntry::getAll();
+
+            foreach ($grades as $g) {
+                echo "<tr>";
+                echo "<td>" . $g->getName() . "</td>";
+                echo "<td>" . $g->getEmail() . "</td>";
+                echo "<td>" . $g->getExamDateFormatted() . "</td>";
+                echo "<td>" . $g->getSubject() . "</td>";
+                echo "<td>" . $g->getGrade() . "</td>";
+                echo "</tr>";
+            }
+
+            ?>
+            </tbody>
+        </table>
+    </div>
+
+    <?php
+    if (count($grades) > 0) {
+    ?>
+
+    <form action="clear.php" method="post">
+        <input type="submit" name="clear" class="btn btn-danger" value="Alle Noten löschen">
+    </form>
+
+    <?php
+    }
+    ?>
+
+
+
 </div>
 <script src="js/index.js"></script>
 </body>
