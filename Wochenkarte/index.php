@@ -1,8 +1,9 @@
 <?php
-
-use model\CookieHelper;
-
 session_start();
+use model\CookieHelper;
+use model\User;
+require "model/User.php";
+
 ?>
 
 <html>
@@ -19,7 +20,7 @@ session_start();
         <?php
         include "model/CookieHelper.php";
 
-        if (CookieHelper::isCookieSet()) {
+        if (CookieHelper::isCookieSet("allowed")) {
         ?>
 
         <h2 class="mt-5 mb-3">Bitte anmelden</h2>
@@ -58,18 +59,35 @@ session_start();
 
             </div>
 
+        </form>
+
             <?php
             }else {
             ?>
 
             <h2 class="mt-5 mb-3">Willkommen</h2>
             <p>Diese Website verwendet Cookies</p>
+            <form method="post" action="">
+
+                <input type="submit"
+                       name="cookies"
+                       class="btn btn-primary"
+                       value="Akzeptieren"
+                />
+
+            </form>
+
+            <?php
+            if (isset($_POST['cookies'])) {
+                CookieHelper::setCookie("allowed", "true");
+            }
+            ?>
 
             <?php
             }
             ?>
 
-        </form>
+
 
 </div>
 </body>
