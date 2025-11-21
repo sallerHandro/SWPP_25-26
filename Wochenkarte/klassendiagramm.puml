@@ -1,0 +1,34 @@
+@startuml
+title Wochenkarte – Klassendiagramm
+
+class CookieHelper {
+    +isCookieSet(name : String) : bool
+    +setCookie(name : String, value : String) : void
+}
+
+class User {
+    -email : String
+    -password : String
+    -errors : Array
+
+    {static} +VALID_EMAIL : String
+    {static} +VALID_PASSWORD : String
+
+    +User(email : String, password : String)
+    +getEmail() : String
+    +setEmail(email : String) : void
+    +getPassword() : String
+    +setPassword(password : String) : void
+    +getErrors() : Array
+
+    +validate() : bool
+    +login() : bool
+    {static} +logout() : void
+    {static} +isLoggedIn() : bool
+}
+
+
+CookieHelper .. User : nutzt >
+User "1" --> "Session/Cookies" : schreibt/liest
+
+@enduml

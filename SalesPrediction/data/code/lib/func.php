@@ -25,6 +25,4 @@ function validateValues($tv, $radio, $newspaper){
     // Rückgabe abhängig von vorhandenen Fehlern
     return empty($errors);
 }
-
-
 ?>
