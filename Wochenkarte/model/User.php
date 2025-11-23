@@ -1,113 +1,38 @@
 <?php
 namespace model;
 
-class User
-{
-    private $email;
-    private $name;
+class User {
 
-    /**
-     * Für den Prototyp: Benutzer fix im Script
-     */
+    public $email;
+    public $password;
+
     private static $users = [
-        "guest@webdesign.at" => [
-            "password" => "guest123",
-            "name" => "Gast Benutzer"
-        ],
-        "test@example.com" => [
-            "password" => "passwort",
-            "name" => "Test Benutzer"
-        ]
+        "gast@example.com"  => "gast123",
+        "frau@example.com"  => "frau123",
     ];
 
-    /**
-     * Konstruktor
-     */
-    public function __construct($email, $name)
-    {
+    public function __construct($email) {
         $this->email = $email;
-        $this->name = $name;
     }
 
-    /**
-     * Holt Benutzer anhand der Zugangsdaten
-     * Rückgabe: User oder null
-     */
-    public static function get($email, $password)
-    {
-        $email = strtolower(trim($email));
-
-        if (!isset(User::$users[$email])) {
-            return null;
-        }
-
-        // Prototyp ohne Passwort-Hashing
-        if (User::$users[$email]["password"] === $password) {
-            return new User($email, User::$users[$email]["name"]);
+    public static function get($email, $password) {
+        if (isset(self::$users[$email]) && self::$users[$email] === $password) {
+            return new User($email);
         }
         return null;
     }
 
-    /**
-     * Loggt den Benutzer ein (Session)
-     */
-    public function login()
-    {
-        if (session_status() !== PHP_SESSION_ACTIVE) {
-            session_start();
-        }
-
-        $_SESSION["user_email"] = $this->email;
-        $_SESSION["user_name"]  = $this->name;
-
+    public function login(){
+        $_SESSION["user"] = $this->email;
         return true;
     }
 
-    /**
-     * Prüft ob ein User eingeloggt ist
-     */
-    public static function isLoggedIn()
-    {
-        if (session_status() !== PHP_SESSION_ACTIVE) {
-            session_start();
-        }
-
-        return isset($_SESSION["user_email"]);
-    }
-
-    /**
-     * Liefert das aktuelle User-Objekt oder null
-     */
-    public static function currentUser()
-    {
-        if (!self::isLoggedIn()) {
-            return null;
-        }
-
-        return new User(
-            $_SESSION["user_email"],
-            $_SESSION["user_name"]
-        );
-    }
-
-    /**
-     * Logout
-     */
-    public static function logout()
-    {
-        if (session_status() != PHP_SESSION_ACTIVE) {
-            session_start();
-        }
-
+    public static function logout() {
         session_unset();
         session_destroy();
     }
 
-    // Getter
-    public function getEmail(){
-        return $this->email;
-    }
-    public function getName(){
-        return $this->name;
+    public static function isLoggedIn(){
+        return isset($_SESSION["user"]);
     }
 }

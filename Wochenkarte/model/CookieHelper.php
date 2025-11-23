@@ -1,16 +1,13 @@
 <?php
-
 namespace model;
 
-class CookieHelper
-{
-    public static function setCookie($name, $value, $expireSeconds = 3600){
-        $expires = time() + $expireSeconds;
-        setcookie($name, $value, $expireSeconds);
-        $_COOKIE[$name] = $value;
+class CookieHelper {
+
+    public static function isCookieSet($name) {
+        return isset($_COOKIE[$name]);
     }
 
-    public static function isCookieSet($name){
-        return isset($_COOKIE[$name]);
+    public static function setCookie($name, $value) {
+        setcookie($name, $value, time() + (86400 * 30), "/");
     }
 }
