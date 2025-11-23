@@ -99,16 +99,20 @@ if (isset($_POST['cookies'])) {
 
     <?php else: ?>
 
-        <h2 class="mt-5 mb-3">Willkommen</h2>
-        <p>Diese Website verwendet Cookies</p>
+        <div class="card shadow p-5 text-center mx-auto" style="max-width:420px;">
+            <h1 class="mb-4">Wochenkarte</h1>
 
-        <form method="post" action="">
-            <input type="submit"
-                   name="cookies"
-                   class="btn btn-primary"
-                   value="Akzeptieren"
-            />
-        </form>
+            <h3 class="mb-3">Willkommen</h3>
+            <p>Diese Website verwendet Cookies.</p>
+
+            <form method="post" action="">
+                <button type="submit" name="cookies"
+                        class="btn btn-warning px-5 py-2"
+                        style="font-size:1.2rem;">
+                    Akzeptieren
+                </button>
+            </form>
+        </div>
 
     <?php endif; ?>
 
