@@ -1,8 +1,44 @@
 <?php
 session_start();
+
 use model\CookieHelper;
 use model\User;
+
 require "model/User.php";
+require "model/CookieHelper.php";
+
+// =========================
+// Login Logik
+// =========================
+
+$error = "";
+
+// Wurde Cookie akzeptiert?
+$cookieAllowed = CookieHelper::isCookieSet("allowed");
+
+// Login-Formular abgeschickt?
+if ($cookieAllowed && isset($_POST['login'])) {
+
+    $email = isset($_POST['email']) ? $_POST['email'] : "";
+    $password = isset($_POST['password']) ? $_POST['password'] : "";
+
+    $user = User::get($email, $password);
+
+    if ($user) {
+        $user->login();
+        header("Location: wochenkarte.php"); // interne Seite
+        exit;
+    } else {
+        $error = "Ungültige E-Mail oder Passwort.";
+    }
+}
+
+// Cookie neu setzen
+if (isset($_POST['cookies'])) {
+    CookieHelper::setCookie("allowed", "true", time() + 3600 * 24 * 7); // 1 Woche gültig
+    header("Location: index.php");
+    exit;
+}
 
 ?>
 
@@ -13,22 +49,21 @@ require "model/User.php";
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
+<div class="container">
 
-        <h1 class="mt-5 mb-3">Wochenkarte</h1>
+    <h1 class="mt-5 mb-3">Wochenkarte</h1>
 
-        <?php
-        include "model/CookieHelper.php";
-
-        if (CookieHelper::isCookieSet("allowed")) {
-        ?>
+    <?php if ($cookieAllowed): ?>
 
         <h2 class="mt-5 mb-3">Bitte anmelden</h2>
 
+        <?php if (!empty($error)): ?>
+            <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
+
         <form id="form_login" method="post" action="">
 
-            <div class="row">
-
+            <div class="row mb-3">
                 <div class="col-sm-6">
                     <label for="email">E-Mail</label>
                     <input type="email"
@@ -36,15 +71,12 @@ require "model/User.php";
                            class="form-control"
                            minlength="5"
                            maxlength="30"
-                           required="required"
-                           value=""
+                           required
                     />
                 </div>
-
             </div>
 
-            <div class="row">
-
+            <div class="row mb-3">
                 <div class="col-sm-6">
                     <label for="password">Passwort</label>
                     <input type="password"
@@ -52,42 +84,33 @@ require "model/User.php";
                            class="form-control"
                            minlength="5"
                            maxlength="20"
-                           required="required"
-                           value=""
+                           required
                     />
                 </div>
-
             </div>
+
+            <input type="submit"
+                   name="login"
+                   class="btn btn-primary"
+                   value="Anmelden"
+            />
 
         </form>
 
-            <?php
-            }else {
-            ?>
+    <?php else: ?>
 
-            <h2 class="mt-5 mb-3">Willkommen</h2>
-            <p>Diese Website verwendet Cookies</p>
-            <form method="post" action="">
+        <h2 class="mt-5 mb-3">Willkommen</h2>
+        <p>Diese Website verwendet Cookies</p>
 
-                <input type="submit"
-                       name="cookies"
-                       class="btn btn-primary"
-                       value="Akzeptieren"
-                />
+        <form method="post" action="">
+            <input type="submit"
+                   name="cookies"
+                   class="btn btn-primary"
+                   value="Akzeptieren"
+            />
+        </form>
 
-            </form>
-
-            <?php
-            if (isset($_POST['cookies'])) {
-                CookieHelper::setCookie("allowed", "true");
-            }
-            ?>
-
-            <?php
-            }
-            ?>
-
-
+    <?php endif; ?>
 
 </div>
 </body>
