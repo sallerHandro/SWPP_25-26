@@ -51,51 +51,42 @@ if (isset($_POST['cookies'])) {
 <body>
 <div class="container">
 
-    <h1 class="mt-5 mb-3">Wochenkarte</h1>
-
     <?php if ($cookieAllowed): ?>
 
-        <h2 class="mt-5 mb-3">Bitte anmelden</h2>
+        <div class="card shadow p-5 mx-auto" style="max-width:420px;">
+            <h1 class="mb-4 text-center">Wochenkarte</h1>
+            <h4 class="mb-4">Bitte anmelden</h4>
 
-        <?php if (!empty($error)): ?>
-            <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
-        <?php endif; ?>
+            <?php if (!empty($error)): ?>
+                <small class="text-danger d-block mb-2">Zugangsdaten ungültig</small>
+            <?php endif; ?>
 
-        <form id="form_login" method="post" action="">
-
-            <div class="row mb-3">
-                <div class="col-sm-6">
-                    <label for="email">E-Mail</label>
+            <form method="post" action="">
+                <div class="mb-3">
                     <input type="email"
                            name="email"
+                           placeholder="E-Mail"
                            class="form-control"
-                           minlength="5"
-                           maxlength="30"
-                           required
-                    />
+                           style="background:#fff9c4;"
+                           required>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <div class="col-sm-6">
-                    <label for="password">Passwort</label>
+                <div class="mb-3">
                     <input type="password"
                            name="password"
+                           placeholder="Passwort"
                            class="form-control"
-                           minlength="5"
-                           maxlength="20"
-                           required
-                    />
+                           style="background:#fff9c4;"
+                           required>
                 </div>
-            </div>
 
-            <input type="submit"
-                   name="login"
-                   class="btn btn-primary"
-                   value="Anmelden"
-            />
-
-        </form>
+                <button type="submit" name="login"
+                        class="btn btn-primary w-100 py-2"
+                        style="font-size:1.1rem;">
+                    Anmelden
+                </button>
+            </form>
+        </div>
 
     <?php else: ?>
 
