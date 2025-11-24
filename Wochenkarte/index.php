@@ -21,7 +21,7 @@ require_once "model/User.php";
             border-radius: 10px;
             box-shadow: 0 0 12px rgba(0,0,0,0.2);
         }
-        input.form-control { background: #fff7cc; }
+        .bg-yellow {background-color: #fff7cc}
     </style>
 </head>
 
@@ -51,7 +51,6 @@ require_once "model/User.php";
 
         } else {
 
-            // LOGIN PROCESSING
             $error = "";
 
             if (!empty($_POST["email"]) && !empty($_POST["password"])) {
@@ -72,10 +71,19 @@ require_once "model/User.php";
             <form method="post">
 
                 <label class="mt-2">E-Mail</label>
-                <input type="email" class="form-control" name="email" required>
+                <input type="email"
+                       class="form-control <?= !empty($error) ? "bg-yellow" : "" ?>"
+                       name="email"
+                       required="required"
+                       value="<?= isset($_POST["email"]) ? $_POST["email"] : "" ?>"
+                />
 
                 <label class="mt-3">Passwort</label>
-                <input type="password" class="form-control" name="password" required>
+                <input type="password"
+                       class="form-control <?= !empty($error) ? "bg-yellow" : "" ?>"
+                       name="password"
+                       required="required"
+                />
 
                 <?php if ($error): ?>
                     <div class="alert alert-danger mt-3"><?= $error ?></div>

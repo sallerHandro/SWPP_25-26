@@ -5,11 +5,18 @@ use model\User;
 
 require_once "model/User.php";
 
-// Zugriffsschutz:
 if (!User::isLoggedIn()) {
     header("Location: index.php");
     exit;
 }
+
+$bilder = [
+    "Montag" => "img\burger.jpeg",
+    "Dienstag" => "img\schnitzel.jpeg",
+    "Mittwoch" => "img\spaghetti.jpeg",
+    "Donnerstag" => "img\pizza.jpeg",
+    "Freitag" => "img\kaiserschmarrn.jpeg",
+];
 ?>
 
 <html>
@@ -35,13 +42,12 @@ if (!User::isLoggedIn()) {
 
     <div class="row">
 
-        <?php
-        $tage = ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag"];
-
-        foreach ($tage as $tag): ?>
-            <div class="col-md-4 col-sm-6 mb-4">
-                <h3 class="day-title"><?= $tag ?></h3>
-                <img src="https://picsum.photos/400/250?random=<?= rand(1,1000) ?>" class="menu-img">
+        <?php foreach ($bilder as $tag => $gericht): ?>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card p-3 shadow-sm">
+                    <h5 class="mb-2"><?= $tag ?></h5>
+                    <img src="<?= $gericht ?>" class="img-fluid rounded">
+                </div>
             </div>
         <?php endforeach; ?>
 

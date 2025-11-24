@@ -35,4 +35,18 @@ class User {
     public static function isLoggedIn(){
         return isset($_SESSION["user"]);
     }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+
 }
+
+
