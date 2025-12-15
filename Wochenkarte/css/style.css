@@ -1,0 +1,26 @@
+body {
+    background: #f2f2f2;
+}
+.card {
+    max-width: 350px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+}
+
+.bg-yellow {
+    background-color: #fff7cc
+}
+
+menu-img {
+    width: 100%; border-radius: 12px;
+}
+
+.day-title {
+    font-size: 22px; margin-top: 10px;
+}
+
+.logout {
+    font-size: 18px;
+}

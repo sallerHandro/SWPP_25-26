@@ -12,17 +12,7 @@ require_once "model/User.php";
     <meta charset="utf-8">
     <title>Wochenkarte</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <style>
-        body { background: #f2f2f2; }
-        .card {
-            max-width: 450px;
-            margin: 70px auto;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 12px rgba(0,0,0,0.2);
-        }
-        .bg-yellow {background-color: #fff7cc}
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>

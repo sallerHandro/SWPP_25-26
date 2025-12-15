@@ -16,6 +16,7 @@ $bilder = [
     "Mittwoch" => "img\spaghetti.jpeg",
     "Donnerstag" => "img\pizza.jpeg",
     "Freitag" => "img\kaiserschmarrn.jpeg",
+    "Samstag & Sonntag" => "img\uhetag.jpeg"
 ];
 ?>
 
@@ -24,12 +25,7 @@ $bilder = [
     <meta charset="utf-8">
     <title>Wochenkarte</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <style>
-        .menu-img { width: 100%; border-radius: 12px; }
-        .day-title { font-size: 22px; margin-top: 20px; }
-        .logout { font-size: 18px; }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="p-4">
@@ -43,7 +39,7 @@ $bilder = [
     <div class="row">
 
         <?php foreach ($bilder as $tag => $gericht): ?>
-            <div class="col-12 col-md-4 mb-4">
+            <div class="col-12 col-md-4 mb-3">
                 <div class="card p-3 shadow-sm">
                     <h5 class="mb-2"><?= $tag ?></h5>
                     <img src="<?= $gericht ?>" class="img-fluid rounded">
