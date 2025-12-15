@@ -71,7 +71,13 @@ class Credentials implements DatabaseObject
 
     public function create()
     {
-        // TODO: Implement create() method.
+        $db = Database::connect();
+        $sql = "INSERT INTO credentials (name, domain, cms_username, cms_password) VALUES(?, ?, ?, ?)";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(array($this->name, $this->domain, $this->cms_username, $this->cms_password));
+        $lastId = $db->lastInsertId();
+        Database::disconnect();
+        return $lastId;
     }
 
     public function update()
